@@ -88,10 +88,16 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    dateOfBirth: req.body.dateOfBirth,
+    gender: req.body.gender,
+    phoneNumber: req.body.phoneNumber,
   });
 
+  // NOTE: to add more key value pairs to allow multiple form inputs to upload to User DB, add them to the array below, the object above and in the User schema. PassportJS only supports email and password, this is how you fix that. 
   User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    { $or: [{ email: req.body.email }, { userName: req.body.userName },  { firstName: req.body.firstName },  { lastName: req.body.lastName },  { dateOfBirth: req.body.dateOfBirth },  { gender: req.body.gender}, {phoneNumber: req.body.phoneNumber }] },
     (err, existingUser) => {
       if (err) {
         return next(err);

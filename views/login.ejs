@@ -1,40 +1,73 @@
 <%- include('partials/header') -%>
 
-<main class="container">
-  <div class="row justify-content-center">
-    <section class="col-6 mt-5">
-      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-      <div class="alert alert-danger"><%= el.msg %></div>
-      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
-      messages.info.forEach( el => { %>
-      <div class="alert alert-info"><%= el.msg %></div>
-      <% }) %> <% } %>
-      <form action="/login" method="POST">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            name="password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </section>
-  </div>
-</main>
+                <body class="register-page">
+                  <div class="wrapper">
+                    <div class="page-header">
+                      <div class="page-header-image"></div>
+                      <div class="content">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+                              <div id="square7" class="square square-7"></div>
+                              <div id="square8" class="square square-8"></div>
+                              <div class="card card-register">
+                                <div class="card-header">
+                                  <img class="card-img" src="../assets/img/square1.png" alt="Card image">
+                                  <h4 class="card-title">Login</h4>
+                                </div>
+                                <div class="card-body">
+                                  <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+                                    <div class="alert alert-danger"><%= el.msg %></div>
+                                    <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+                                    messages.info.forEach( el => { %>
+                                    <div class="alert alert-info"><%= el.msg %></div>
+                                    <% }) %> <% } %>
+                                <form action="/login" method="POST" class="form">
 
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <i class="tim-icons icon-email-85"></i>
+                                      </div>
+                                    </div>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" aria-describedby="emailHelp" name="email">
+                                  </div>
+
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <i class="tim-icons icon-lock-circle"></i>
+                                      </div>
+                                    </div>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                                  </div>
+
+                                  <br>
+                            
+                                  <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-6"> 
+                                      <button type="submit" class="btn-round btn-lg  btn-primary">Submit</button>
+                                    </div>
+                                    <div class="col"></div>
+                                  </div>
+                                    <br>
+
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="register-bg"></div>
+                          <div id="square1" class="square square-1"></div>
+                          <div id="square2" class="square square-2"></div>
+                          <div id="square3" class="square square-3"></div>
+                          <div id="square4" class="square square-4"></div>
+                          <div id="square5" class="square square-5"></div>
+                          <div id="square6" class="square square-6"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
 <%- include('partials/footer') -%>
