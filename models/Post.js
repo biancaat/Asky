@@ -1,18 +1,18 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    require: true,
-  },
-  cloudinaryId: {
-    type: String,
-    require: true,
-  },
+  // title: {
+  //   type: String,
+  //   required: true,
+  // },
+  // image: {
+  //   type: String,
+  //   require: true,
+  // },
+  // cloudinaryId: {
+  //   type: String,
+  //   require: true,
+  // },
   caption: {
     type: String,
     required: true,
@@ -27,8 +27,10 @@ const PostSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now()
   },
 });
 
 module.exports = mongoose.model("Post", PostSchema);
+
+
