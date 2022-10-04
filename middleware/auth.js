@@ -13,5 +13,11 @@ module.exports = {
         res.redirect("/dashboard");
       }
     },
-  };
-  
+    isAdmin: function (req, res, next) {
+      if (req.isAuthenticated() && (req.user.id == "633751ff359fb504993b829f")) {
+            return next();
+      } else {
+        res.redirect("/profile");
+      }
+    }
+  }

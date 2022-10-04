@@ -1,64 +1,52 @@
 <%- include('partials/header') -%>
 
 <body class="index-page">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
-    <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="../" rel="tooltip">
-          <span>ASKY•</span> Here to Help
-        </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse justify-content-end" id="navigation">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a>
-                ASKY•
-              </a>
-            </div>
-            <div class="col-6 collapse-close text-right">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-            </div>
+
+<!-- Navbar for post-->
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+  <div class="container">
+    <div class="navbar-translate">
+      <a class="navbar-brand" href="../" rel="tooltip">
+        <span>ASKY•</span> Here to Help
+      </a>
+      <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <div class="navbar-collapse-header">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a>
+              ASKY•
+            </a>
+          </div>
+          <div class="col-6 collapse-close text-right">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="tim-icons icon-simple-remove"></i>
+            </button>
           </div>
         </div>
-        <ul class="navbar-nav">
-          <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="Check out the repo!" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
-              <i class="fab fa-github"></i>
-              <p class="d-lg-none d-xl-none">Twitter</p>
-            </a>
-          </li>
-          <li class="nav-item p-0">
-            <a class="nav-link" href="">About Us</a>
-          </li>
-          <li class="nav-item p-0">
-            <a class="nav-link"  href="">How it Works</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-primary " href="/login">
-            Login</a>
-          </li>
-        </ul>
       </div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-info " href="/logout">Log Out</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
 <br>
 <br>
   <section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-    <div class="md:w-2/3 flex flex-col items-start">
+  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col ">
+    <div class="md:w-2/3 flex flex-col items-start bg-gray-600 rounded-lg px-4 py-3">
       <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-bold tracking-widest"><%= post.createdAt.toString().slice(0,16) %></span>
-      <h2 class="sm:text-2xl text-2xl title-font font-medium text-white-900 mt-4 mb-4"><%= user.firstName %> <%= user.lastName %> wants to know:</h2>
-      <p class="leading-relaxed mb-8"><%= post.caption %></p>
+      <h2 class="sm:text-2xl text-2xl title-font font-medium text-white-900 mt-2 mb-2"><%= post.createdBy %> asks:</h2>
+      <p class="leading-relaxed mb-4"><%= post.caption %></p>
       <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
         <a class="text-indigo-500 inline-flex items-center">Learn More
           <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +55,7 @@
           </svg>
         </a>
         <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-          <%if(post.user == user.id){ %>
+          <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
             <form
               action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
@@ -111,34 +99,36 @@
   </div>
 </section>
 
+<%if(user.id == "633751ff359fb504993b829f"){ %> 
 <div class="container">
-<div class="container">
-<div class="container">
-<div class="container">
-<form>
-  <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-      <div class="py-2 px-4 bg-dark rounded-t-lg dark:bg-gray-800">
-          <label for="comment" class="sr-only">Your comment</label>
-          <textarea id="comment" rows="4" class="px-0 w-full text-sm text-gray-900 bg-dark border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required=""></textarea>
+  <div class="container">
+    <div class="container">
+      <div class="container md:w-2/3 lg:w-2/3 sm:w-2/3">
+        <form action="/comment/createComment/<%=post._id%>" method="POST">
+          <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+              <div class="py-2 px-4 bg-dark rounded-t-lg dark:bg-gray-800">
+                  <label for="comment" class="sr-only">Your comment</label>
+                  <textarea id="comment" rows="4" class="px-0 w-full text-sm text-gray-900 bg-dark border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required="" name="comment"></textarea>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 border-t dark:border-gray-600">
+                  <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                      Post comment
+                  </button>
+              </div>
+          </div>
+        </form>
       </div>
-      <div class="flex justify-between items-center py-2 px-3 border-t dark:border-gray-600">
-          <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-              Post comment
-          </button>
-      </div>
+    </div>
   </div>
-</form>
+</div>
+<%}%>
 
-
-</div>
-</div>
-</div>
-</div>
-<section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
 <ul>
   <% for(var i=0; i<comments.length; i++) {%>
-    <li class="">
+    <li>
+<section class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-1 py- items-center justify-center flex-col">
+
 
         <div class="justify-center">
             <!-- <div class="py-8 px-4 lg:w-1/3">
@@ -148,45 +138,42 @@
                   <span class="font-medium text-lg text-gray-800 title-font leading-none">18</span>
                 </div> -->
                 <div class="flex-grow pl-6">
-                  <h2 class="tracking-widest text-xs title-font font-medium text-indigo-500 mb-1">CATEGORY</h2>
-                  <h1 class="title-font text-xl font-medium text-gray-900 mb-3">The 400 Blows</h1>
-                  <p class="leading-relaxed mb-5">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-                  <a class="inline-flex items-center">
+                  <h2 class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-bold tracking-widest"><%= comments[i].createdAt.toString().slice(0,16) %></h2>
+                  <br>
+                  <br>
+                  <h1 class="title-font text-xl font-medium text-white-900 mb-3"><%= `${comments[i].createdBy} says:`%></h1>
+                  <p class="leading-relaxed "><%= comments[i].comment%>
+                  <span >
+                    <%if(post.user == user.id){ %>
+                      <form
+                      action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
+                      method="POST"
+                        
+                      >
+                        <button class="fa fa-trash" type="submit"></button>
+                      </form>
+                      <%}%>
+                  </span>
+                </p>
+
+
+                  <!-- <a class="inline-flex items-center">
                     <img alt="blog" src="https://dummyimage.com/103x103" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
                     <span class="flex-grow flex flex-col pl-3">
                       <span class="title-font font-medium text-gray-900">Alper Kamu</span>
                     </span>
-                  </a>
+                  </a> -->
                 </div>
               </div>
             </div>
-  </div>
-        
-      <%= `${comments[i].createdBy}:`%>
-      <%= comments[i].comment%>
-      <%if(comments[i].createdById == user.id){ %>
-        <form
-          action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
+          </div>
+     
     </li>
   <% } %>
 </ul>
 </div>
 
 </section>
-
-
-
-
-
-
-
-    
-
 
 
 <div class="container">
@@ -252,5 +239,8 @@
   </div>
 </div>
 </body>
+
+
+
 
 <%- include('partials/footer') -%>

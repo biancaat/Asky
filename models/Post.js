@@ -29,6 +29,16 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
+  createdBy:{
+    type: String
+  },
+  createdByEmail:{
+    type: String
+  },
+  createdByNumber:{
+    type: String
+  }
+
 });
 
 module.exports = mongoose.model("Post", PostSchema);
