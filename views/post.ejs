@@ -32,6 +32,9 @@
       </div>
       <ul class="navbar-nav">
         <li class="nav-item">
+          <a class="btn btn-info " href="/feed">Dashboard</a>
+        </li>
+        <li class="nav-item">
           <a class="btn btn-info " href="/logout">Log Out</a>
         </li>
       </ul>
@@ -41,203 +44,92 @@
 
 <br>
 <br>
+
+<!-- Individual Post -->
+<div class="container md:w-2/3 sm:w-3/4 mx-auto ">
   <section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col ">
-    <div class="md:w-2/3 flex flex-col items-start bg-gray-600 rounded-lg px-4 py-3">
+  <div class="container mx-auto flex px- py-20 items-center justify-center flex-col w-full ">
+    <div class="w-full flex flex-col items-start bg-gray-600 rounded-lg px-10 py-3">
       <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-bold tracking-widest"><%= post.createdAt.toString().slice(0,16) %></span>
       <h2 class="sm:text-2xl text-2xl title-font font-medium text-white-900 mt-2 mb-2"><%= post.createdBy %> asks:</h2>
       <p class="leading-relaxed mb-4"><%= post.caption %></p>
-      <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-        <a class="text-indigo-500 inline-flex items-center">Learn More
-          <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14"></path>
-            <path d="M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
+      <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-black-100 mt-auto w-full">
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByEmail %></span>
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByNumber %></span>
         <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
           <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
-            <form
-              action="/post/deletePost/<%= post.id %>?_method=DELETE"
+            <form action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
-              class="col-3"
-            >
+              class="col-3">
               <button class="fa fa-trash" type="submit"></button>
             </form>
             <%}%>
         </span>
         <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-          <form
+          <form action="/post/likePost/<%= post.id %>?_method=PUT"
           class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="fa fa-heart" type="submit"></button>
-        </form>
-        </span><span><%= post.likes %></span>
-
-
-
-      </div>
-      
-      <!-- <a class="inline-flex items-center">
-        <img alt="blog" src="https://dummyimage.com/104x104" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-        <span class="flex-grow flex flex-col pl-4">
-          <span class="title-font font-medium text-gray-900">Holden Caulfield</span>
-          <span class="text-gray-400 text-xs tracking-widest mt-0.5">UI DEVELOPER</span>
+          method="POST">
+              <button class="fa fa-heart" type="submit"></button>
+          </form>
         </span>
-      </a> -->
-
+        <span class="text-gray-400"><%= post.likes %></span>
+      </div>
       
-      <!-- <br><br><br><br><br>
-    <div class="text-center lg:w-2/3 w-full">
-      <div class="flex justify-center">
-        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-        <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
-      </div>
-    </div> -->
-
-  </div>
-</section>
-
-<%if(user.id == "633751ff359fb504993b829f"){ %> 
-<div class="container">
-  <div class="container">
-    <div class="container">
-      <div class="container md:w-2/3 lg:w-2/3 sm:w-2/3">
-        <form action="/comment/createComment/<%=post._id%>" method="POST">
-          <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-              <div class="py-2 px-4 bg-dark rounded-t-lg dark:bg-gray-800">
-                  <label for="comment" class="sr-only">Your comment</label>
-                  <textarea id="comment" rows="4" class="px-0 w-full text-sm text-gray-900 bg-dark border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required="" name="comment"></textarea>
-              </div>
-              <div class="flex justify-between items-center py-2 px-3 border-t dark:border-gray-600">
-                  <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                      Post comment
-                  </button>
-              </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<%}%>
-
-<ul>
-  <% for(var i=0; i<comments.length; i++) {%>
-    <li>
-<section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-1 py- items-center justify-center flex-col">
-
-
-        <div class="justify-center">
-            <!-- <div class="py-8 px-4 lg:w-1/3">
-              <div class="h-full flex items-start">
-                <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
-                  <span class="text-gray-500 pb-2 mb-2 border-b-2 border-gray-200">Jul</span>
-                  <span class="font-medium text-lg text-gray-800 title-font leading-none">18</span>
-                </div> -->
-                <div class="flex-grow pl-6">
-                  <h2 class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-bold tracking-widest"><%= comments[i].createdAt.toString().slice(0,16) %></h2>
-                  <br>
-                  <br>
-                  <h1 class="title-font text-xl font-medium text-white-900 mb-3"><%= `${comments[i].createdBy} says:`%></h1>
-                  <p class="leading-relaxed "><%= comments[i].comment%>
-                  <span >
-                    <%if(post.user == user.id){ %>
-                      <form
-                      action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
-                      method="POST"
-                        
-                      >
-                        <button class="fa fa-trash" type="submit"></button>
-                      </form>
-                      <%}%>
-                  </span>
-                </p>
-
-
-                  <!-- <a class="inline-flex items-center">
-                    <img alt="blog" src="https://dummyimage.com/103x103" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
-                    <span class="flex-grow flex flex-col pl-3">
-                      <span class="title-font font-medium text-gray-900">Alper Kamu</span>
-                    </span>
-                  </a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-     
-    </li>
-  <% } %>
-</ul>
-</div>
-
-</section>
-
-
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
-      </div>
-    </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
-    </div>
-
-    <div class="mt-5">
-      <h2>Add a comment</h2>
-      <form action="/comment/createComment/<%=post._id%>" method="POST">
-        <div class="mb-3">
-            <label for="comment" class="form-label">Comment</label>
-            <input type="text" class="form-control" id="comment" name="comment">
+      <!-- Comment section if User == Admin -->
+      <%if(user.id == "633751ff359fb504993b829f"){ %> 
+      <form action="/comment/createComment/<%=post._id%>" method="POST" class="mx-auto w-full height-10">
+        <label for="chat" class="sr-only">Your message</label>
+        <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
+            <textarea name="comment"id="chat" rows="1" class=" block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a message..." ></textarea>
+                <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                <span class="sr-only">Send message</span>
+            </button>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-    <ul>
-      <% for(var i=0; i<comments.length; i++) {%>
-        <li class="col-6 justify-content-between mt-5">
-          <%= `${comments[i].createdBy}:`%>
-          <%= comments[i].comment%>
-          <%if(comments[i].createdById == user.id){ %>
-            <form
-              action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
-              method="POST"
-            >
-              <button class="btn btn-primary fa fa-trash" type="submit"></button>
-            </form>
-            <%}%>
-        </li>
-      <% } %>
-    </ul>
+    </form>
+    <%}%>
+    
 
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+  </div>
+</section>
+</div>
+
+
+<div class="container md:w-2/3 sm:w-3/4 mx-auto pb-8 ">
+  <ul>
+    <% for(var i=0; i<comments.length; i++) {%>
+      <li>
+<section class="text-gray-600 body-font overflow-hidden bg-gray-500 bg-opacity-25 rounded-lg mb-4">
+  <div class="container py-10 mx-auto">
+    <div class="-my-8 divide-y-2 divide-gray-100">
+            <div class="py-2 ">
+              <div class="grid-cols-2">
+                <span class="grid-rows-1 font-semibold title-font text-white"><%= `${comments[i].createdBy}:`%></span>
+                <br>
+                <span class=" grid-rows-1 mt-1 text-gray-500 text-sm pb-4"><%= comments[i].createdAt.toString().slice(0,16) %></span>
+              </div>
+              <div class="flex justify-between">
+                <p class="leading-relaxed pt-2 flex-initial w-80"><%= comments[i].comment%></p>
+                <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
+                  <form  action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
+                    method="POST"
+                    class="flex-initial w-20 text-right pt-2">
+                    <button class="fa fa-trash w-20 " type="submit"></button>
+                  </form>
+                  <%}%>
+              </div>
+              <br>
+            <div class="border-b"></div>
+            </div>
+          </li>
+          <% } %>
+      </ul>
     </div>
   </div>
+</section>
 </div>
+
+
 </body>
 
 
