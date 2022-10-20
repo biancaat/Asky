@@ -88,7 +88,7 @@
           <tr>
               <th>Date</th>
               <th>Inquery</th>
-              <th class="text-right">View</th>
+              <th class="text-center">View</th>
           </tr>
       </thead>
       <tbody>
@@ -97,18 +97,26 @@
           <tr >
               <td> <%= posts[i].createdAt.toString().slice(0,16) %></td>
               <td> <%= posts[i].caption.split(' ').slice(0,8).join(' ')+'...' %></td>
-              <td class="td-actions text-right del">
+              <td class="td-actions text-center del">
                 <a href="/post/<%= posts[i]._id%>">
                   <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm" id="remove">
                     <i class="tim-icons icon-single-02"></i>
                   </button>
                 </a>
+               
+              
               </td>
+             
+              
           </tr>
           <% } %>
       </tbody>
   </table>
 </div>
+
+
+
+
 
 
 

@@ -66,6 +66,20 @@ module.exports = {
       console.log(err);
     }
   },
+  updatePost : async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            caption: req.body.caption,
+
+        },)
+        console.log("Caption updated");
+        res.redirect(`/post/${req.params.id}`);
+    }catch (err){
+      console.log(err)
+    }
+},
   deletePost: async (req, res) => {
     try {
       // Find post by id

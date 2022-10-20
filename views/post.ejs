@@ -56,23 +56,60 @@
       <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-black-100 mt-auto w-full">
         <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByEmail %></span>
         <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByNumber %></span>
-        <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+        <!-- <span class="text-gray-400  inline-flex items-right leading-none text-sm pr-1 py-1 border-r-2 border-gray-200"> -->
           <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
             <form action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
-              class="col-3">
-              <button class="fa fa-trash" type="submit"></button>
+              class="col-3 text-right">
+              <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove">
+                <i class="tim-icons icon-trash-simple"></i>
+              </button>
             </form>
             <%}%>
         </span>
-        <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-          <form action="/post/likePost/<%= post.id %>?_method=PUT"
+        <!-- <span class="text-gray-400 inline-flex items-center leading-none text-sm"> -->
+          <!-- <form > -->
+          <!-- action="/post/likePost/<%= post.id %>?_method=PUT" 
           class="col-1"
-          method="POST">
-              <button class="fa fa-heart" type="submit"></button>
-          </form>
-        </span>
-        <span class="text-gray-400"><%= post.likes %></span>
+          method="POST">-->
+              <!-- Button trigger modal -->
+              <%if(post.user == user.id ){ %>
+            
+              <button type="submit" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm" id="edit" data-toggle="modal" data-target="#exampleModal">
+
+              <i class="tim-icons icon-pencil"></i>
+              </button>
+            
+            <%}%>
+
+            <!-- Modal -->
+            <div class="modal fade modal-black" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Your Concern</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      <i class="tim-icons icon-simple-remove"></i>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/post/updatePost/<%= post.id %>" method="POST">
+                      <div class="mb-3">
+                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" id="caption" name="caption"><%= post.caption %></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" value="Upload">Save changes</button>
+                      </div>
+                                
+                    </form>  
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal End -->
+          <!-- </form> -->
+        <!-- </span> -->
+        <!-- <span class="text-gray-400"><%= post.likes %></span> -->
       </div>
       
       <!-- Comment section if User == Admin -->
@@ -114,7 +151,9 @@
                   <form  action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
                     method="POST"
                     class="flex-initial w-20 text-right pt-2">
-                    <button class="fa fa-trash w-20 " type="submit"></button>
+                    <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove">
+                      <i class="tim-icons icon-trash-simple"></i>
+                    </button>
                   </form>
                   <%}%>
               </div>
@@ -130,7 +169,13 @@
 </div>
 
 
+
+
+
 </body>
+
+
+
 
 
 
