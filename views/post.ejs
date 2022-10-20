@@ -41,6 +41,7 @@
     </div>
   </div>
 </nav>
+<!-- Nav bar end -->
 
 <br>
 <br>
@@ -52,120 +53,120 @@
     <div class="w-full flex flex-col items-start bg-gray-600 rounded-lg px-10 py-3">
       <span class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-bold tracking-widest"><%= post.createdAt.toString().slice(0,16) %></span>
       <h2 class="sm:text-2xl text-2xl title-font font-medium text-white-900 mt-2 mb-2"><%= post.createdBy %> asks:</h2>
-      <p class="leading-relaxed mb-4"><%= post.caption %></p>
+      <p class="leading-relaxed mb-4 font-semibold"><%= post.caption %></p>
       <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-black-100 mt-auto w-full">
         <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByEmail %></span>
-        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByNumber %></span>
-        <!-- <span class="text-gray-400  inline-flex items-right leading-none text-sm pr-1 py-1 border-r-2 border-gray-200"> -->
-          <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
-            <form action="/post/deletePost/<%= post.id %>?_method=DELETE"
-              method="POST"
-              class="col-3 text-right">
-              <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove">
-                <i class="tim-icons icon-trash-simple"></i>
-              </button>
-            </form>
-            <%}%>
-        </span>
-        <!-- <span class="text-gray-400 inline-flex items-center leading-none text-sm"> -->
-          <!-- <form > -->
-          <!-- action="/post/likePost/<%= post.id %>?_method=PUT" 
-          class="col-1"
-          method="POST">-->
-              <!-- Button trigger modal -->
-              <%if(post.user == user.id ){ %>
-            
-              <button type="submit" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm" id="edit" data-toggle="modal" data-target="#exampleModal">
-
-              <i class="tim-icons icon-pencil"></i>
-              </button>
-            
-            <%}%>
-
-            <!-- Modal -->
-            <div class="modal fade modal-black" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Your Concern</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                      <i class="tim-icons icon-simple-remove"></i>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form action="/post/updatePost/<%= post.id %>" method="POST">
-                      <div class="mb-3">
-                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" id="caption" name="caption"><%= post.caption %></textarea>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" value="Upload">Save changes</button>
-                      </div>
-                                
-                    </form>  
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal End -->
-          <!-- </form> -->
-        <!-- </span> -->
-        <!-- <span class="text-gray-400"><%= post.likes %></span> -->
+        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"><%= post.createdByNumber %></span>      
       </div>
-      
-      <!-- Comment section if User == Admin -->
-      <%if(user.id == "633751ff359fb504993b829f"){ %> 
-      <form action="/comment/createComment/<%=post._id%>" method="POST" class="mx-auto w-full height-10">
-        <label for="chat" class="sr-only">Your message</label>
-        <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
-            <textarea name="comment"id="chat" rows="1" class=" block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a message..." ></textarea>
-                <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
-                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
-                <span class="sr-only">Send message</span>
+  
+
+<div class="flex ">
+    <!-- Button trigger Edit modal --> 
+  <div class="mr-2">
+    <%if(post.user == user.id ){ %>
+      <div class="">
+        <button type="submit" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm btn-tooltip" title="Edit" id="edit" data-toggle="modal" data-target="#exampleModal" data-container="body" data-animation="true" data-placement="bottom">
+        <i class="tim-icons icon-pencil"></i>
+        </button>
+      </div>  
+        <%}%>
+  </div>
+
+     <!-- Modal -->
+     <div class="modal fade modal-black" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Your Concern</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="tim-icons icon-simple-remove"></i>
             </button>
+          </div>
+          <div class="modal-body">
+            <form action="/post/updatePost/<%= post.id %>" method="POST">
+              <div class="mb-3">
+                <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" id="caption" name="caption"><%= post.caption %></textarea>
+              </div>
+              <div class="modal-footer pl-0">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+              </div>          
+            </form>  
+          </div>
         </div>
-    </form>
+      </div>
+    </div>
+    <!-- Modal End -->
+
+<!-- Post delete button -->
+  <div class="">
+    <%if(post.user == user.id ){ %>
+      <form action="/post/deletePost/<%= post.id %>?_method=DELETE"
+      method="POST"
+      class="">
+        <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm btn-tooltip" title="Delete" id="remove" data-container="body" data-animation="true" data-placement="bottom">
+          <i class="tim-icons icon-trash-simple"></i>
+        </button>
+      </form>
     <%}%>
+  </div>
+</div>
+      
+
+        <!-- Comment create section if User == Admin -->
+        <%if(user.id == "633751ff359fb504993b829f"){ %> 
+        <form action="/comment/createComment/<%=post._id%>" method="POST" class="mx-auto w-full height-10">
+          
+          <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
+              <textarea name="comment"id="chat" rows="1" class=" block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-grey dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a message..." ></textarea>
+                  <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600 btn-tooltip" data-container="body" data-animation="true" data-placement="bottom" title="Submit Comment">
+                  <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                  
+              </button>
+          </div>
+      </form>
+      <%}%>
     
 
-  </div>
-</section>
+    </div>
+  </section>
 </div>
 
-
+<!-- Section for displayed comments -->
 <div class="container md:w-2/3 sm:w-3/4 mx-auto pb-8 ">
   <ul>
     <% for(var i=0; i<comments.length; i++) {%>
       <li>
-<section class="text-gray-600 body-font overflow-hidden bg-gray-500 bg-opacity-25 rounded-lg mb-4">
-  <div class="container py-10 mx-auto">
-    <div class="-my-8 divide-y-2 divide-gray-100">
-            <div class="py-2 ">
-              <div class="grid-cols-2">
-                <span class="grid-rows-1 font-semibold title-font text-white"><%= `${comments[i].createdBy}:`%></span>
-                <br>
-                <span class=" grid-rows-1 mt-1 text-gray-500 text-sm pb-4"><%= comments[i].createdAt.toString().slice(0,16) %></span>
-              </div>
-              <div class="flex justify-between">
-                <p class="leading-relaxed pt-2 flex-initial w-80"><%= comments[i].comment%></p>
-                <%if(user.id == "633751ff359fb504993b829f" || post.user == user.id ){ %>
-                  <form  action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
-                    method="POST"
-                    class="flex-initial w-20 text-right pt-2">
-                    <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove">
-                      <i class="tim-icons icon-trash-simple"></i>
-                    </button>
-                  </form>
-                  <%}%>
-              </div>
-              <br>
-            <div class="border-b"></div>
+        <section class="text-gray-600 body-font overflow-hidden bg-gray-500 bg-opacity-25 rounded-lg mb-4">
+          <div class="container py-10 mx-auto">
+            <div class="-my-8 divide-y-2 divide-gray-100">
+                    <div class="py-2 ">
+                      <div class="grid-cols-3">
+                        <span class="grid-rows-1 font-semibold title-font text-white"><%= `${comments[i].createdBy}:`%></span>
+                        <br>
+                        <span class=" grid-rows-1 mt-1 text-gray-500 text-sm pb-4"><%= comments[i].createdAt.toString().slice(0,16) %></span>
+                      </div>
+                      <div class="flex justify-between">
+                        <p class="leading-relaxed pt-2 flex-initial w-85 font-semibold"><%= comments[i].comment%></p>
+                        <!-- Delete Comment -->
+                        <%if(user.id == "633751ff359fb504993b829f" ){ %>
+                          <form  action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
+                            method="POST"
+                            class="flex-initial w-20 text-right pt-2">
+                            <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm mr-3 btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="Delete">
+                              <i class="tim-icons icon-trash-simple"></i>
+                            </button>
+                          </form>
+                          <%}%>
+                      </div>
+                      <br>
+                    <div class="border-b"></div>
+                    </div>
+                  </li>
+                  <% } %>
+              </ul>
             </div>
-          </li>
-          <% } %>
-      </ul>
-    </div>
-  </div>
-</section>
+          </div>
+        </section>
 </div>
 
 

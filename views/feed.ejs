@@ -1,6 +1,7 @@
 <%- include('partials/header') -%>
 <body class="index-page">
 <!-- Navbar for profile -->
+<div class="flex flex-col h-screen">
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
   <div class="container">
     <div class="navbar-translate">
@@ -37,40 +38,130 @@
   </div>
 </nav>
 
-<!-- Table  -->
 
-<!-- <br><br><br><br><br><br> -->
-<div class="container mx-auto mt-28 px-5 py-0 w-5/6 h-full bg-gray-600 bg-opacity-25 ">
-  <table class="table">
-      <thead>
-          <tr>
-              <th>Date</th>
-              <th>Patient</th>
-              <th>Inquery</th>
-              <th class="text-right">View</th>
-          </tr>
-      </thead>
-      <tbody>
-         
-        <% for(var i=0; i<posts.length; i++) {%>
-          <tr >
-              <td> <%= posts[i].createdAt.toString().slice(0,16) %></td>
-              <td> <%= posts[i].createdBy %></td>
-              <td> <%= posts[i].caption.split(' ').slice(0,8).join(' ')+'...' %></td>
-              <td class="td-actions text-right del">
-                <a href="/post/<%= posts[i]._id%>">
-                  <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm" id="remove">
-                    <i class="tim-icons icon-single-02"></i>
-                  </button>
-                </a>
-              </td>
-          </tr>
-          <% } %>
-      </tbody>
-  </table>
+<!-- Nav tabs -->
+<div class="container mx-auto mt-28 px-5 py-0 w-100%">
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs nav-tabs-primary " role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+          <i class="tim-icons icon-spaceship"></i> New
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+          <i class="tim-icons icon-settings-gear-63"></i> Completed
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#link3" role="tablist">
+          <i class="tim-icons icon-bag-16"></i> Options
+        </a>
+      </li> -->
+    </ul>
+  </div>
+  <div class="card-body">
+    <!-- Tab panes -->
+    <div class="tab-content tab-space">
+      <div class="tab-pane active" id="link1">
+        <!-- Post Table for new Inqueries -->
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Patient</th>
+                  <th>Inquery</th>
+                  <th class="text-center">View</th>
+                  <th class="text-center">Complete</th>
+              </tr>
+          </thead>
+          <tbody>
+             
+            <% for(var i=0; i<posts.length; i++) {%>
+              <% if (posts[i].completed == false) { %> 
+              
+              <tr >
+                  <td> <%= posts[i].createdAt.toString().slice(0,16) %></td>
+                  <td> <%= posts[i].createdBy %></td>
+                  <td> <%= posts[i].caption.split(' ').slice(0,8).join(' ')+'...' %></td>
+                  <td class="td-actions text-center del">
+                    <a href="/post/<%= posts[i]._id%>">
+                      <button type="button" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="View Post">
+                        <i class="tim-icons icon-single-02"></i>
+                      </button>
+                    </a>
+                  </td>
+
+                  <td class="td-actions text-center del">
+                    <form action="/post/markComplete/<%= posts[i]._id %>" method="POST">
+                      <button type="submit" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="Mark Comeplete">
+                        <i class="tim-icons icon-check-2"></i>
+                      </button>
+                  </form>
+                  </td>
+                  
+              </tr>
+              <%}%>
+              <% } %>
+          </tbody>
+      </table>
+      </div>
+      <div class="tab-pane" id="link2">
+        <!-- Post Table for completed Inqueries -->
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Patient</th>
+                  <th>Inquery</th>
+                  <th class="text-center">View</th>
+                  <th class="text-center">Incomplete</th>
+              </tr>
+          </thead>
+          <tbody>
+             
+            <% for(var i=0; i<posts.length; i++) {%>
+              <% if (posts[i].completed == true) { %> 
+              
+              <tr >
+                  <td> <%= posts[i].createdAt.toString().slice(0,16) %></td>
+                  <td> <%= posts[i].createdBy %></td>
+                  <td> <%= posts[i].caption.split(' ').slice(0,8).join(' ')+'...' %></td>
+                  <td class="td-actions text-center del">
+                    <a href="/post/<%= posts[i]._id%>">
+                      <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="View Post">
+                        <i class="tim-icons icon-single-02"></i>
+                      </button>
+                    </a>
+                  </td>
+
+                  <td class="td-actions text-center del">
+                    <form action="/post/markIncomplete/<%= posts[i]._id %>" method="POST">
+                      <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="Mark Incomplete">
+                        <i class="tim-icons icon-check-2"></i>
+                      </button>
+                  </form>
+                  </td>
+              </tr>
+              <%}%>
+              <% } %>
+          </tbody>
+      </table>
+      </div>
+      <!-- <div class="tab-pane" id="link3">
+        <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+          <br />
+          <br/> Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+      </div> -->
+    </div>
+  </div>
+</div>
+</div>
 </div>
 
 </body>
 
  
 <%- include('partials/footer') -%>
+</div>

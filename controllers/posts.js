@@ -41,6 +41,7 @@ module.exports = {
         // cloudinaryId: result.public_id,
         caption: req.body.caption,
         likes: 0,
+        completed: false,
         user: req.user.id,
         createdBy: `${req.user.firstName} ${req.user.lastName}`,
         createdByEmail: req.user.email,
@@ -80,6 +81,34 @@ module.exports = {
       console.log(err)
     }
 },
+  markComplete : async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            completed: true,
+
+        },)
+        console.log("Post marked completed!");
+        res.redirect(`/feed`);
+    }catch (err){
+      console.log(err)
+    }
+  },
+  markIncomplete : async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            completed: false,
+
+        },)
+        console.log("Post marked completed!");
+        res.redirect(`/feed`);
+    }catch (err){
+      console.log(err)
+    }
+  },
   deletePost: async (req, res) => {
     try {
       // Find post by id

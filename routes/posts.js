@@ -9,9 +9,14 @@ router.get("/:id", ensureAuth, postsController.getPost);
 
 router.post("/createPost", postsController.createPost);
 
+// Update/edit post route
 router.post("/updatePost/:id", postsController.updatePost);
 
 router.put("/likePost/:id", postsController.likePost);
+
+router.post("/markComplete/:id", postsController.markComplete)
+
+router.post("/markIncomplete/:id", postsController.markIncomplete)
 
 router.delete("/deletePost/:id", postsController.deletePost);
 

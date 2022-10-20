@@ -66,8 +66,8 @@
         
         <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0  sm:text-left">
           <div class="container">
-          <p class="text-info">
-            Leave a brief description, and we'll get back to you!</p><br>
+          <p class="text-info text-lg font-bold">
+            Hi <%= user.firstName %> 👋 , What Can We Help You With?</p><br>
             <form action="/post/createPost"  method="POST">
               <div class="mb-3">
                 <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Describe your concern..." id="caption" name="caption"></textarea>
@@ -82,7 +82,7 @@
 </section>
 
 <!-- Section for user posts -->
-<div class="container mx-auto mt-28 px-5 py-0 w-5/6 h-full bg-gray-600 bg-opacity-25 ">
+<div class="container mx-auto mt-15 mb-10 pb-4 pt-4 px-5 py-0 w-5/6 h-full bg-gray-600 bg-opacity-25 ">
   <table class="table">
       <thead>
           <tr>
@@ -99,7 +99,7 @@
               <td> <%= posts[i].caption.split(' ').slice(0,8).join(' ')+'...' %></td>
               <td class="td-actions text-center del">
                 <a href="/post/<%= posts[i]._id%>">
-                  <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm" id="remove">
+                  <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="View Post">
                     <i class="tim-icons icon-single-02"></i>
                   </button>
                 </a>
