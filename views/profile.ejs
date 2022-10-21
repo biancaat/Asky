@@ -37,14 +37,10 @@
   </div>
 </nav>
 
-<!-- Profile and Form section -->
-
+<!-- Profile: Post submit and Profile Photo submit section -->
 <section class="text-gray-600 body-font">
   <div class="container px-5 pt-24 pb-10 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
-      <!-- <div class="rounded-lg h-64 overflow-hidden">
-        <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500">
-      </div> -->
       <div class="flex flex-col sm:flex-row mt-10">
         <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
           <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -53,9 +49,48 @@
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
-        
+
           <div class="flex flex-col items-center text-center justify-center">
-            <h2 class="font-medium title-font mt-4 text-white-900 text-lg"><%= user.firstName %> <%= user.lastName %></h2>
+
+              <!-- Button trigger Edit modal to add profile photo --> 
+              <div class="">
+                <%if(user.id ){ %>
+                  <div class="">
+                    <button class="" type="submit" data-toggle="modal" data-target="#exampleModal" data-container="body" data-animation="true" data-placement="bottom">
+                      <i class="fa-solid fa-circle-plus relative bottom-7 left-5 text-2xl font-bold text-emerald-500"></i>
+                    </button>
+                  </div>  
+                    <%}%>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade modal-black" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add An Image</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" class="btn-success">
+                        <i class="tim-icons icon-simple-remove text-emerald-500 font-bold"></i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form action="/profilePhoto/addProfilePhoto" enctype="multipart/form-data" method="POST">
+                        <div class="mb-3">
+                          <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file" id="imageUpload" name="file">
+                        </div>
+                        <div class="modal-footer pl-0">
+                          <button type="submit" class="text-white bg-blue-700 hover:bg-emerald-800 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-emerald-600 dark:hover:bg-emerald-700 focus:outline-none dark:focus:ring-emerald-800">Submit</button>
+                        </div> 
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal End -->
+
+            <!-- User demographics -->
+            <h2 class="font-medium title-font mt-2 text-white-900 text-lg"><%= user.firstName %> <%= user.lastName %></h2>
             <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
             <p class="text-sm"><%= user.dateOfBirth.split(' ')[0] %></p>
             <p class="text-sm"><%= user.gender%> </p>
@@ -64,6 +99,7 @@
           </div>
         </div>
         
+        <!-- Question submission -->
         <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0  sm:text-left">
           <div class="container">
           <p class="text-info text-lg font-bold">
@@ -81,7 +117,7 @@
   </div>
 </section>
 
-<!-- Section for user posts -->
+<!-- Section to display user posts -->
 <div class="container mx-auto mt-15 mb-10 pb-4 pt-4 px-5 py-0 w-5/6 h-full bg-gray-600 bg-opacity-25 ">
   <table class="table">
       <thead>
@@ -92,7 +128,6 @@
           </tr>
       </thead>
       <tbody>
-         
         <% for(var i=0; i<posts.length; i++) {%>
           <tr >
               <td> <%= posts[i].createdAt.toString().slice(0,16) %></td>
@@ -103,11 +138,7 @@
                     <i class="tim-icons icon-single-02"></i>
                   </button>
                 </a>
-               
-              
-              </td>
-             
-              
+              </td>  
           </tr>
           <% } %>
       </tbody>
