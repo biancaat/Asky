@@ -4,46 +4,24 @@
 <div class="flex flex-col h-screen">
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
   <div class="container">
-    <div class="navbar-translate">
-      <a class="navbar-brand" href="../" rel="tooltip">
-        <span>ASKY•</span> Here to Help
-      </a>
-      <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar bar1"></span>
-        <span class="navbar-toggler-bar bar2"></span>
-        <span class="navbar-toggler-bar bar3"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-            <a>
-              ASKY•
-            </a>
-          </div>
-          <div class="col-6 collapse-close text-right">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-        </div>
+        <a class="navbar-brand" href="../" rel="tooltip">
+          <span>ASKY•</span> Here to Help
+        </a>
+    
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="btn btn-primary " href="/logout">
+            Logout</a>
+          </li>
+        </ul>
       </div>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="btn btn-info " href="/logout">Log Out</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+    </nav>
 
 <!-- Nav tabs -->
 <div class="container mx-auto mt-28 px-5 py-0 w-100%">
 <div class="card">
   <div class="card-header">
-    <ul class="nav nav-tabs nav-tabs-primary " role="tablist">
+    <ul class="nav nav-tabs nav-tabs-success " role="tablist">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
           <i class="tim-icons icon-spaceship"></i> New

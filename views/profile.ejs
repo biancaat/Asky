@@ -3,52 +3,46 @@
 <!-- Navbar for profile -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
   <div class="container">
-    <div class="navbar-translate">
-      <a class="navbar-brand" href="../" rel="tooltip">
-        <span>ASKY•</span> Here to Help
-      </a>
-      <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar bar1"></span>
-        <span class="navbar-toggler-bar bar2"></span>
-        <span class="navbar-toggler-bar bar3"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-      <div class="navbar-collapse-header">
-        <div class="row">
-          <div class="col-6 collapse-brand">
-            <a>
-              ASKY•
-            </a>
-          </div>
-          <div class="col-6 collapse-close text-right">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <i class="tim-icons icon-simple-remove"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="btn btn-info " href="/logout">Log Out</a>
-        </li>
-      </ul>
-    </div>
+    <a class="navbar-brand" href="../" rel="tooltip">
+      <span>ASKY•</span> Here to Help
+    </a>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="btn btn-primary " href="/logout">
+        Logout</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
+
 <!-- Profile: Post submit and Profile Photo submit section -->
+
+
 <section class="text-gray-600 body-font">
   <div class="container px-5 pt-24 pb-10 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
       <div class="flex flex-col sm:flex-row mt-10">
         <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+          <% if (profilePhoto.length){ %>
+            <% for(var i=0; i<profilePhoto.length; i++) {%>
+              <div class="rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+              <div class="relative w-24 h-24 rounded-full">
+                <img class="object-cover w-24 h-24 rounded-full border border-gray-100 shadow-sm" src="<%= profilePhoto[profilePhoto.length-1].image%>" alt="user profile image" />
+                <!-- <div class="absolute top-0 right-0 h-6 w-6 my-1 border-4 border-white rounded-full bg-green-400 z-2 "></div> -->
+              </div>
+              </div>
+              <% break %>
+              <% } %>
+          <% } else { %>
           <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
+        <% } %>
 
           <div class="flex flex-col items-center text-center justify-center">
 
@@ -56,8 +50,8 @@
               <div class="">
                 <%if(user.id ){ %>
                   <div class="">
-                    <button class="" type="submit" data-toggle="modal" data-target="#exampleModal" data-container="body" data-animation="true" data-placement="bottom">
-                      <i class="fa-solid fa-circle-plus relative bottom-7 left-5 text-2xl font-bold text-emerald-500"></i>
+                    <button class="w-6 h-6 rounded-full bg-emerald-500 relative bottom-6 left-7"  type="submit" data-toggle="modal" data-target="#exampleModal" data-container="body" data-animation="true" data-placement="bottom" rel="tooltip" title="Add a photo!"><span class="text-white font-bold text-lg  mx-auto relative bottom-0.5 "> +</span>
+                      <!-- <i class="fa-solid fa-circle-plus relative bottom-7 left-5 text-2xl font-bold text-emerald-500"></i> -->
                     </button>
                   </div>  
                     <%}%>

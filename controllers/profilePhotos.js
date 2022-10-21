@@ -1,7 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const ProfilePhoto = require("../models/ProfilePhoto");
 
-
 module.exports = {
     addProfilePhoto: async (req, res) => {
         try {
