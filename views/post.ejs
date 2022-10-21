@@ -14,10 +14,17 @@
         <a class="btn btn-primary " href="/profile">
         Profile</a>
       </li> -->
+      <% if (post.user == user.id) { %>  
       <li class="nav-item">
-        <a class="btn btn-primary " href="/logout">
-        Logout</a>
+        <a class="btn btn-primary " href="/profile">
+        Profile</a>
       </li>
+      <% } else { %>
+        <li class="nav-item">
+          <a class="btn btn-primary " href="/feed">
+          Dashboard</a>
+        </li>
+      <% } %>
     </ul>
   </div>
 </nav>
@@ -109,7 +116,7 @@
       
 
         <!-- Comment create section if User == Admin -->
-        <%if(user.id == "633751ff359fb504993b829f"){ %> 
+        <%if(user.id == "63530f41a43c911343190bd9"){ %> 
         <form action="/comment/createComment/<%=post._id%>" method="POST" class="mx-auto w-full height-10">
           
           <div class="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
@@ -144,7 +151,7 @@
                       <div class="flex justify-between">
                         <p class="leading-relaxed pt-2 flex-initial w-85 font-semibold"><%= comments[i].comment%></p>
                         <!-- Delete Comment -->
-                        <%if(user.id == "633751ff359fb504993b829f" ){ %>
+                        <%if(user.id == "63530f41a43c911343190bd9" ){ %>
                           <form  action="/comment/deleteComment/<%=post.id%>/<%=comments[i]._id%>?_method=DELETE"
                             method="POST"
                             class="flex-initial w-20 text-right pt-2">
