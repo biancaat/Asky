@@ -25,9 +25,8 @@ This app is for medical clinics looking to decrease the volume of patient phone 
   These are some of the optimizations I am currently implementing :
   
 - I am in the process of converting EJS to React.
-- I am currently designing the medical clinic dashboard and implementing the organizational functionality.
 - General optimizations for progressive rendering
-- Eventually, I want to incorporate the Twilio API
+- Eventually, I want to find a way to incorporate the Twilio API
 
 ---
 
