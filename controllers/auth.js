@@ -118,6 +118,7 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+  // NOTE: to add more key value pairs to allow multiple form inputs to upload to User DB on signup with PassportJS, add them to the array below, the object above and in the User schema. PassportJS only supports email and password, this is how you fix that. 
   const user = new User({
     userName: req.body.userName,
     email: req.body.email,
@@ -129,9 +130,9 @@ exports.postSignup = (req, res, next) => {
     phoneNumber: req.body.phoneNumber,
   });
 
-  // NOTE: to add more key value pairs to allow multiple form inputs to upload to User DB on signup with PassportJS, add them to the array below, the object above and in the User schema. PassportJS only supports email and password, this is how you fix that. 
+  // NOTE: This line of code is checking the user db to make sure the email and username are unique, do not put, made that mistake don't do again :  {phoneNumber: req.body.phoneNumber}
   User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName },  { firstName: req.body.firstName },  { lastName: req.body.lastName },  { dateOfBirth: req.body.dateOfBirth },  { gender: req.body.gender}, {phoneNumber: req.body.phoneNumber }] },
+    { $or: [{ email: req.body.email }, { userName: req.body.userName }, ] },
     (err, existingUser) => {
       if (err) {
         return next(err);
