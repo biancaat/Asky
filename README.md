@@ -1,6 +1,6 @@
 <img src="public/imgs/askyHomePage.png"></img>
 <video width="250" autoplay muted>
-  <source src="/public/imgs/askyvid.mp4" type="video/web">
+  <source src="./public/imgs/askyvid.mp4" type="video/web">
 </video>
 
 
