@@ -1,3 +1,4 @@
+<img src="public/imgs/askyHomePage.png"></img>
 <video width="250" autoplay muted>
   <source src="public/imgs/askyvid.mp4" type="video/web">
 </video>
@@ -28,13 +29,13 @@ This app is for medical clinics looking to decrease the volume of patient phone 
   
 - I am in the process of converting EJS to React.
 - General optimizations for progressive rendering
-- Eventually, I want to find a way to incorporate the Twilio API
+- Eventually, I want to incorporate the Twilio API
 
 ---
 
 # Tech used 
 
-JavaScript, Node, Express, EJS, MongoDB, PassportJS, Tailwind, Bootstrap, CSS, HTML
+JavaScript, Node, Express, MongoDB, EJS, PassportJS, Tailwind, Bootstrap, CSS, HTML
 
 ---
 
