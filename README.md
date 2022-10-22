@@ -1,7 +1,4 @@
-<img src="public/imgs/askyHomePage.png"></img>
-<video width="250" autoplay muted>
-  <source src="public/imgs/askyvid.mp4" type="video/web">
-</video>
+https://user-images.githubusercontent.com/102930791/197311215-c92a34a6-3c0e-488e-b6dd-e0071f744490.mp4
 
 
 
