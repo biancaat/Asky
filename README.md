@@ -1,4 +1,6 @@
-<img src="public/imgs/askyHomePage.png"></img>
+<video width="250" autoplay muted>
+  <source src="public/imgs/askyvid.mp4" type="video/web">
+</video>
 
 
 
@@ -33,7 +35,7 @@ This app is for medical clinics looking to decrease the volume of patient phone 
 
 # Tech used 
 
-JavaScript, MongoDB, Express, Node, CSS, EJS, Passport
+JavaScript, Node, Express, EJS, MongoDB, PassportJS, Tailwind, Bootstrap, CSS, HTML
 
 ---
 
