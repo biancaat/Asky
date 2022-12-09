@@ -67,7 +67,7 @@ app.use("/profilePhoto", profilePhotoRoutes);
 // });
 
 
-// This is how to integrate cyclic and mongodb
+// When deploying with cyclic, ensure that connection to DB happens before app.listen or else the app will freeze and there will be connection errors. the following fixes that:
 
 //Connect To Database
 connectDB().then(() => {
