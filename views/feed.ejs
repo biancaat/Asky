@@ -96,6 +96,7 @@
                   <th>Inquiry</th>
                   <th class="text-center">View</th>
                   <th class="text-center">Incomplete</th>
+                  <th class="text-center">Delete</th>
               </tr>
           </thead>
           <tbody>
@@ -117,10 +118,26 @@
 
                   <td class="td-actions text-center del">
                     <form action="/post/markIncomplete/<%= posts[i]._id %>" method="POST">
-                      <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="Mark Incomplete">
+                      <button type="submit" rel="tooltip" class="btn btn-success btn-simple btn-icon btn-sm" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="Mark Incomplete">
                         <i class="tim-icons icon-check-2"></i>
                       </button>
                   </form>
+                  </td>
+
+                  <td class="td-actions text-center del">
+                    <!-- <a href="/post/<%= posts[i]._id%>">
+                      <button type="submit" rel="tooltip" class="btn btn-info btn-simple btn-icon btn-sm btn-tooltip" id="remove" data-container="body" data-animation="true" data-placement="bottom" title="View Post">
+                        <i class="tim-icons icon-single-02"></i>
+                      </button>
+                    </a> -->
+
+                    <form action="/post/deletePost/<%= posts[i]._id %>?_method=DELETE"
+                      method="POST"
+                      class="">
+                        <button type="submit" rel="tooltip" class="btn btn-danger btn-simple btn-icon btn-sm btn-tooltip" title="Delete" id="remove" data-container="body" data-animation="true" data-placement="bottom">
+                          <i class="tim-icons icon-trash-simple"></i>
+                        </button>
+                      </form>
                   </td>
               </tr>
               <%}%>
