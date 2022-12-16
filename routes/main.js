@@ -10,9 +10,12 @@ router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/feed", isAdmin, postsController.getFeed);
 router.get("/login", authController.getLogin);
+router.get("/patientDemoLogin", authController.getPatientDemoLogin );
+router.get("/clinicDemoLogin", authController.getClinicDemoLogin );
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
+
 
 module.exports = router;

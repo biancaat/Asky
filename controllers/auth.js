@@ -11,6 +11,28 @@ exports.getLogin = (req, res) => {
   });
 };
 
+// Patient Demo Login
+exports.getPatientDemoLogin = (req, res) => {
+  if (req.user) {
+    return res.redirect("/profile");
+  }
+  res.render("patientDemoLogin", {
+    title: "Login",
+  });
+};
+
+// Clinic Demo Login
+exports.getClinicDemoLogin = (req, res) => {
+  if (req.user) {
+    return res.redirect("/profile");
+  }
+  res.render("clinicDemoLogin", {
+    title: "Login",
+  });
+};
+
+
+
 // exports.postAdminLogin = (req, res, next) => {
 //   const validationErrors = [];
 //   if (!validator.isEmail(req.body.email))
@@ -98,6 +120,8 @@ exports.getSignup = (req, res) => {
     title: "Create Account",
   });
 };
+
+// PAtient 
 
 exports.postSignup = (req, res, next) => {
   const validationErrors = [];

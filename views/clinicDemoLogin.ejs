@@ -1,0 +1,96 @@
+<%- include('partials/header') -%>
+<!-- NAV BAR -->
+
+<body class="index-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+    <div class="container">
+      <a class="navbar-brand" href="../" rel="tooltip">
+        <span>ASKY•</span> Here to Help
+      </a>
+  
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-primary " href="/signup">
+          Signup</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- LOGIN FORM -->
+                <body class="register-page">
+                  <div class="wrapper">
+                    <div class="page-header">
+                      <div class="page-header-image"></div>
+                      <div class="content">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+                              <div id="square7" class="square square-7"></div>
+                              <div id="square8" class="square square-8"></div>
+                              <div class="card card-register">
+                                <div class="card-header">
+                                  <img class="card-img" src="../assets/img/square1.png" alt="Card image">
+                                  <h4 class="card-title">Login</h4>
+                                </div>
+                                <div class="card-body">
+                                  <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+                                    <div class="alert alert-danger"><%= el.msg %></div>
+                                    <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+                                    messages.info.forEach( el => { %>
+                                    <div class="alert alert-info"><%= el.msg %></div>
+                                    <% }) %> <% } %>
+                                <form action="/login" method="POST" class="form">
+
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <i class="tim-icons icon-email-85"></i>
+                                      </div>
+                                    </div>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" 
+                                    value="adminclinic@gmail.com"
+                                    aria-describedby="emailHelp" name="email">
+                                  </div>
+
+                                  <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <div class="input-group-text">
+                                        <i class="tim-icons icon-lock-circle"></i>
+                                      </div>
+                                    </div>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" 
+                                    value="12345678"
+                                    placeholder="Password">
+                                  </div>
+
+                                  <br>
+                            
+                                  <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-6"> 
+                                      <button type="submit" class="btn-round btn-lg  btn-primary">Submit</button>
+                                    </div>
+                                    <div class="col"></div>
+                                  </div>
+                                    <br>
+
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="register-bg"></div>
+                          <div id="square1" class="square square-1"></div>
+                          <div id="square2" class="square square-2"></div>
+                          <div id="square3" class="square square-3"></div>
+                          <div id="square4" class="square square-4"></div>
+                          <div id="square5" class="square square-5"></div>
+                          <div id="square6" class="square square-6"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+<%- include('partials/footer') -%>
